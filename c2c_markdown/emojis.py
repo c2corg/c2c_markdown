@@ -70,7 +70,11 @@ class EmojiPattern(Pattern):
             kwargs = db.emoji[code]
             kwargs["SVG_CDN"] = kwargs.get("SVG_CDN", db.SVG_CDN)
 
-            self.emoji_index[code] = Emoji(db_name=db.name, code=code, **kwargs)
+            self.emoji_index[code] = Emoji(
+                db_name=db.name, 
+                code=code, 
+                **kwargs
+            )
 
         for code in db.aliases:
             self.emoji_index[code] = self.emoji_index[db.aliases[code]]
