@@ -1,0 +1,9 @@
+
+test-py3.5:
+  stage: test
+  image: python:3.5
+  script:
+  - apt-get update -qy
+  - pip install -r requirements.txt
+  - export PYTHONPATH=/builds/cbeauchesne/c2c_markdown:$PYTHONPATH
+  - python -m unittest tests/test_format.py
