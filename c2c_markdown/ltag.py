@@ -242,7 +242,7 @@ class LTagProcessor(BlockProcessor):
             self.parser.parseBlocks(parent, [before_ltag])
 
         # Build XML elements
-        table = etree.SubElement(parent, 'table', {'c2c:role': 'ltag', 
+        table = etree.SubElement(parent, 'table', {'c2c:role': 'ltag',
                                                    'class': 'ltag'})
         tbody = etree.SubElement(table, 'tbody')
 
