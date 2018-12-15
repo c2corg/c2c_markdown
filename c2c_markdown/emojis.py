@@ -9,7 +9,7 @@ from markdown.inlinepatterns import Pattern
 import copy
 
 from pymdownx import emoji1_db
-from .emoji_databases import c2c_activities, c2c_waypoints
+from c2c_markdown.emoji_databases import c2c_activities, c2c_waypoints
 
 emoji1_db.SVG_CDN = 'https://cdn.jsdelivr.net/emojione/assets/svg/'
 
