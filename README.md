@@ -1,5 +1,7 @@
 ## c2c_markdown
 
+![Build](https://travis-ci.org/c2corg/c2c_markdown.svg?branch=master)
+
 Build upon [Python Markdown](https://github.com/Python-Markdown/markdown), this repo is the core markdown parser for camptocamp.org
 
 ## How to contribute ?
