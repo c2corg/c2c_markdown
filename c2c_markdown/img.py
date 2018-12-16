@@ -18,13 +18,6 @@ IMG_RE = r'(?:^|\n)\[img=(\d+)([a-z_ ]*)(/\]|\]([\w\W]*?)\[/img\])'
 
 
 class C2CImageExtension(Extension):
-    def __init__(self, *args, **kwargs):
-        self.config = {
-            "api_url": ['', 'Base URL of the API. Defaults to ""']
-        }
-
-        super(C2CImageExtension, self).__init__(*args, **kwargs)
-
     def extendMarkdown(self, md, md_globals):  # noqa
         self.md = md
         md.parser.blockprocessors.add('c2cimgblock',
@@ -76,13 +69,13 @@ class C2CImageBlock(BlockProcessor):
 
         img = etree.Element('img')
 
-        img_url = '%s/images/proxy/%s' % (self.config['api_url'], img_id)
+        img_url = '/images/proxy/%s' % (img_id, )
 
         if img_size:
             img_url += '?size=' + img_size
 
-        img.set('src', img_url)
         img.set('alt', (caption or img_id).replace("\n", " "))
+        img.set('c2c:url-proxy', img_url)
         img.set('c2c:role', 'embedded-image')
         img.set('c2c:document-id', img_id)
         img.set('c2c:size', img_size)
