@@ -37,7 +37,6 @@ forum</a>.
 _parser_lock = RLock()
 
 _markdown_parser = None
-_parsers_settings = None
 _cleaner = None
 _iframe_secret_tag = "iframe_" + _get_secret()
 
@@ -56,13 +55,6 @@ secrets module.
 How to hack C2C ? if you want to inject an iframe, you will need to know the
 value of _iframe_secret_tag present into server memory.
 """
-
-
-def configure_parsers(settings):
-    global _parsers_settings
-    _parsers_settings = {
-        'api_url': settings.get('api_url')
-    }
 
 
 def _get_cleaner():
@@ -111,11 +103,11 @@ def _get_cleaner():
             _iframe_secret_tag: ["src"],
             "figure": ["c2c:position"],
             "img": [
-                "src",
                 "alt",
                 "c2c:document-id",
                 "c2c:role",
                 "c2c:size",
+                "c2c:url-proxy",
                 "c2c:svg-name",
                 "c2c:emoji-db"
             ],
@@ -142,7 +134,7 @@ def _get_markdown_parser():
     if not _markdown_parser:
         extensions = [
             C2CWikiLinkExtension(),
-            C2CImageExtension(api_url=_parsers_settings['api_url']),
+            C2CImageExtension(),
             Nl2BrExtension(),
             C2CTocExtension(marker='[toc]', baselevel=2),
             AutoLinkExtension(),

@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from c2c_markdown import parse_code, configure_parsers
+from c2c_markdown import parse_code
 
 
 def read_file(path):
@@ -10,8 +10,6 @@ def read_file(path):
 
 
 class TestFormat(unittest.TestCase):
-    def setUp(self):  # noqa
-        configure_parsers({'api_url': 'https://api.camptocamp.org/'})
 
     def test_all(self):
         def do_test(test_id, text, expected):
