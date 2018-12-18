@@ -92,6 +92,7 @@ class C2CImageBlock(BlockProcessor):
         fig.append(img)
         # fig.set('class', 'embedded_' + position + ' ' + img_size)
         fig.set('c2c:position', position)
+        fig.set('c2c:role', 'embedded-figure')
 
         if caption:
             img_caption = etree.Element('figcaption')
