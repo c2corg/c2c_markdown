@@ -96,6 +96,8 @@ class C2CTocTreeprocessor(TocTreeprocessor):
                     self.add_permalink(el, el.attrib["id"])
 
         div = self.build_toc_div(nest_toc_tokens(toc_tokens))
+        div.attrib["c2c:role"] = "toc"
+        del div.attrib["class"]
         if self.marker:
             self.replace_marker(doc, div)
 
