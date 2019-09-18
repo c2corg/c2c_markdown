@@ -28,7 +28,7 @@ def fake_get_markdown_parser(*args, **kwargs):
 
 class TestFormat(unittest.TestCase):
     """
-    parse_code() function shouold never raise an exception. All sensitives
+    parse_code() function should never raise an exception. All sensitive
     functions (parsing and cleaning) are inside a try-catch block. This
     test-case verify that, if some extension raises an excpetion, the good
     default message (_PARSER_EXCEPTION_MESSAGE) is returned.
