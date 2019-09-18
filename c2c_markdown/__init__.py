@@ -101,7 +101,7 @@ def _get_cleaner():
             "td": ["colspan"],
             "span": ["class", "translate", "id", "c2c:role"],
             _iframe_secret_tag: ["src"],
-            "figure": ["c2c:position", "c2c:role"],
+            "figure": ["c2c:position", "c2c:role", "c2c:size"],
             "img": [
                 "alt",
                 "c2c:document-id",
