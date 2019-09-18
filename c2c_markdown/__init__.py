@@ -172,8 +172,6 @@ def parse_code(text):
         # indefinitely, and performance decreases over time
         parser.reset()
 
-        parser.convert(text)
-
         try:
             text = parser.convert(text)
 
