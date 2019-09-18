@@ -30,7 +30,7 @@ class TestFormat(unittest.TestCase):
     """
     parse_code() function should never raise an exception. All sensitive
     functions (parsing and cleaning) are inside a try-catch block. This
-    test-case verify that, if some extension raises an excpetion, the good
+    test-case verifies that, if some extension raises an exception, the appropriate
     default message (_PARSER_EXCEPTION_MESSAGE) is returned.
     """
     def setUp(self):
