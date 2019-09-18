@@ -15,7 +15,7 @@ pip install -r requirements.txt -r dev-requirements.txt
 
 # add a couple .md/.html files into test folders
 
-python -m unittests tests/test_format.py
+python -m unittest
 ```
 
 
