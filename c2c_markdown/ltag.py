@@ -296,7 +296,7 @@ class LtagTreeprocessor(Treeprocessor):
 
     def run(self, root):
 
-        numbering = LTagNumbering(self.markdown)
+        numbering = LTagNumbering(self.md)
 
         def compute(node, first_cell):
             if node.tag not in ("code", "pre"):
@@ -325,12 +325,15 @@ class LtagTreeprocessor(Treeprocessor):
 class C2CLTagExtension(Extension):
     """ Add tables to Markdown. """
 
-    def extendMarkdown(self, md, md_globals):  # noqa
+    def extendMarkdown(self, md):
         """ Add an instance of TableProcessor to BlockParser. """
         if '|' not in md.ESCAPED_CHARS:
             md.ESCAPED_CHARS.append('|')
 
-        md.parser.blockprocessors.add('ltag',
-                                      LTagProcessor(md.parser),
-                                      '<hashheader')
-        md.treeprocessors.add('ltag', LtagTreeprocessor(md), '_end')
+        md.parser.blockprocessors.register(
+            LTagProcessor(md.parser),
+            'ltag',
+            75
+        )
+
+        md.treeprocessors.register(LtagTreeprocessor(md), 'ltag', 0)

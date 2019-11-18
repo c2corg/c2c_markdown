@@ -7,7 +7,7 @@ EXTRA_AUTOLINK_RE = r'(?<!"|>)((https?://|(?<!http://)(?<!https://)www)[-\w./#?%
 
 
 class AutoLinkPattern(Pattern):
-    def handleMatch(self, m):  # noqa
+    def handleMatch(self, m):
         el = markdown.util.etree.Element('a')
         if m.group(2).startswith('http'):
             href = m.group(2)
@@ -28,12 +28,9 @@ class AutoLinkExtension(markdown.Extension):
     Based on: http://stackoverflow.com/a/1665440/119937
     """
 
-    def extendMarkdown(self, md, md_globals):  # noqa
-        md.inlinePatterns.add(
+    def extendMarkdown(self, md):
+        md.inlinePatterns.register(
+            AutoLinkPattern(EXTRA_AUTOLINK_RE),
             'extra_autolink',
-            AutoLinkPattern(EXTRA_AUTOLINK_RE, self),
-            '<automail')
-
-
-def makeExtension(configs=[]):  # noqa
-    return AutoLinkExtension(configs=configs)
+            115
+        )

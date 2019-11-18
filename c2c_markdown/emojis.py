@@ -53,7 +53,7 @@ class Emoji(object):
 
 
 class EmojiPattern(Pattern):
-    def __init__(self, pattern, md):
+    def __init__(self, pattern):
 
         self.emoji_index = {}
 
@@ -61,7 +61,6 @@ class EmojiPattern(Pattern):
         self._append_to_index(c2c_waypoints)
         self._append_to_index(c2c_activities)
 
-        self.markdown = md
         Pattern.__init__(self, pattern)
 
     def _append_to_index(self, db):
@@ -79,14 +78,14 @@ class EmojiPattern(Pattern):
         for code in db.aliases:
             self.emoji_index[code] = self.emoji_index[db.aliases[code]]
 
-    def handleMatch(self, m):  # noqa
+    def handleMatch(self, m):
         user_code = m.group(2)
         emoji = self.emoji_index.get(user_code, None)
         return emoji.to_svg(user_code) if emoji else user_code
 
 
 class C2CEmojiExtension(Extension):
-    def extendMarkdown(self, md, md_globals):  # noqa
+    def extendMarkdown(self, md):
 
         # Add chars to the escape list. Don't just append as it modifies the
         # global list permanently. Make a copy and extend **that** copy so
@@ -97,9 +96,5 @@ class C2CEmojiExtension(Extension):
                 escaped.append(ec)
         md.ESCAPED_CHARS = escaped
 
-        emj = EmojiPattern(RE_EMOJI, md)
-        md.inlinePatterns.add("emoji", emj, "<not_strong")
-
-
-def makeExtension(*args, **kwargs):  # noqa
-    return C2CEmojiExtension(*args, **kwargs)
+        emj = EmojiPattern(RE_EMOJI)
+        md.inlinePatterns.register(emj, "emoji", 74)
