@@ -17,7 +17,7 @@ from markdown.util import etree
 
 DOCUMENT_RE = r'(?P<document_type>[a-z]+)/(?P<document_id>\d+)'
 LANG_SLUG_RE = r'(/(?P<lang>[a-z]{2})(/(?P<slug>[a-z0-9\-]+))?)?'
-ANCHOR_RE = r'(#(?P<anchor>[a-z0-9\-]+))?'
+ANCHOR_RE = r'(#(?P<anchor>[a-z0-9\-_]+))?'
 LABEL_RE = r'(?P<label>[^\]]+)'
 
 TARGET_RE = "".join((
