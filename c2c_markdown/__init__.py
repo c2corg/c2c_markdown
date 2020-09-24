@@ -4,7 +4,6 @@ import binascii
 import os
 from threading import RLock
 
-from c2c_markdown.autolink import AutoLinkExtension
 from c2c_markdown.wikilinks import C2CWikiLinkExtension
 from c2c_markdown.img import C2CImageExtension
 from c2c_markdown.video import C2CVideoExtension
@@ -137,7 +136,6 @@ def _get_markdown_parser():
             C2CImageExtension(),
             Nl2BrExtension(),
             C2CTocExtension(marker='[toc]', baselevel=2),
-            AutoLinkExtension(),
             C2CVideoExtension(iframe_secret_tag=_iframe_secret_tag),
             C2CLTagExtension(),
             C2CHeaderExtension(),
